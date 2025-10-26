@@ -36,7 +36,7 @@ This exercise takes approximately **20** minutes to complete.
 
     ```bash
     az acr create --resource-group myResourceGroup \
-        --name myContainerRegistry --sku Basic
+        --name mycontainerregistry --sku Basic
     ```
 
     > **Note:** The command creates a *Basic* registry, a cost-optimized option for developers learning about Azure Container Registry.
