@@ -32,7 +32,7 @@ This exercise takes approximately **20** minutes to complete.
     az group create --location eastus --name myResourceGroup
     ```
 
-1. Run the following command to create a basic container registry. The registry name must be unique within Azure, and contain 5-50 alphanumeric characters. Replace **myResourceGroup** with the name you used earlier, and **myContainerRegistry** with a unique value.
+1. Run the following command to create a basic container registry. The registry name must be unique within Azure, and contain 5-50 numeric and lowercase characters. Replace **myResourceGroup** with the name you used earlier, and **myContainerRegistry** with a unique value.
 
     ```bash
     az acr create --resource-group myResourceGroup \
