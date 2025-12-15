@@ -7,7 +7,7 @@ lab:
 
 # Implement interactive authentication with MSAL.NET
 
-In this exercise, you register an application in Microsoft Entra ID, then create a .NET console application that uses MSAL.NET to perform interactive authentication and acquire an access token for Microsoft Graph. You learn how to configure authentication scopes, handle user consent, and see how tokens are cached for subsequent runs. 
+In this exercise, you register an application in Microsoft Entra ID, then create a .NET console application that uses MSAL.NET to perform interactive authentication and acquire an access token for Microsoft Graph. You learn how to configure authentication scopes, handle user consent, and see how tokens are cached for subsequent runs.
 
 Tasks performed in this exercise:
 
@@ -33,7 +33,7 @@ To complete the exercise, you need:
 
 1. In your browser navigate to the Azure portal [https://portal.azure.com](https://portal.azure.com); signing in with your Azure credentials if prompted.
 
-1. In the portal, search for and select **App registrations**. 
+1. In the portal, search for and select **App registrations**.
 
 1. Select **+ New registration**, and when the **Register an application** page appears, enter your application's registration information:
 
@@ -43,12 +43,12 @@ To complete the exercise, you need:
     | **Supported account types** | Select **Accounts in this organizational directory only** |
     | **Redirect URI (optional)** | Select **Public client/native (mobile & desktop)** and enter `http://localhost` in the box to the right. |
 
-1. Select **Register**. Microsoft Entra ID assigns a unique application (client) ID to your app, and you're taken to your application's **Overview** page. 
+1. Select **Register**. Microsoft Entra ID assigns a unique application (client) ID to your app, and you're taken to your application's **Overview** page.
 
 1. In the **Essentials** section of the **Overview** page record the **Application (client) ID** and the **Directory (tenant) ID**. The information is needed for the application.
 
     ![Screenshot showing the location of the fields to copy.](./media/01-app-directory-id-location.png)
- 
+
 ## Create a .NET console app to acquire a token
 
 Now that the needed resources are deployed to Azure the next step is to set up the console application. The following steps are performed in your local environment.
@@ -74,7 +74,7 @@ Now that the needed resources are deployed to Azure the next step is to set up t
 
 ### Configure the console application
 
-In this section you create, and edit, a **.env** file to hold the secrets you recorded earlier. 
+In this section you create, and edit, a **.env** file to hold the secrets you recorded earlier.
 
 1. Select **File > New file...** and create a file named *.env* in the project folder.
 
@@ -94,22 +94,22 @@ In this section you create, and edit, a **.env** file to hold the secrets you re
     ```csharp
     using Microsoft.Identity.Client;
     using dotenv.net;
-    
+
     // Load environment variables from .env file
     DotEnv.Load();
     var envVars = DotEnv.Read();
-    
+
     // Retrieve Azure AD Application ID and tenant ID from environment variables
     string _clientId = envVars["CLIENT_ID"];
     string _tenantId = envVars["TENANT_ID"];
-    
-    // ADD CODE TO DEFINE SCOPES AND CREATE CLIENT 
-    
-    
-    
+
+    // ADD CODE TO DEFINE SCOPES AND CREATE CLIENT
+
+
+
     // ADD CODE TO ACQUIRE AN ACCESS TOKEN
-    
-    
+
+
     ```
 
 1. Press **ctrl+s** to save your changes.
@@ -121,7 +121,7 @@ In this section you create, and edit, a **.env** file to hold the secrets you re
     ```csharp
     // Define the scopes required for authentication
     string[] _scopes = { "User.Read" };
-    
+
     // Build the MSAL public client application with authority and redirect URI
     var app = PublicClientApplicationBuilder.Create(_clientId)
         .WithAuthority(AzureCloudInstance.AzurePublic, _tenantId)
@@ -147,7 +147,7 @@ In this section you create, and edit, a **.env** file to hold the secrets you re
         result = await app.AcquireTokenInteractive(_scopes)
                     .ExecuteAsync();
     }
-    
+
     // Output the acquired access token to the console
     Console.WriteLine($"Access Token:\n{result.AccessToken}");
     ```
@@ -156,7 +156,7 @@ In this section you create, and edit, a **.env** file to hold the secrets you re
 
 ## Run the application
 
-Now that the app is complete it's time to run it. 
+Now that the app is complete it's time to run it.
 
 1. Start the application by running the following command:
 
@@ -177,7 +177,7 @@ Now that the app is complete it's time to run it.
     eyJ0eXAiOiJKV1QiLCJub25jZSI6IlZF.........
     ```
 
-1. Start the application a second time and notice you no longer receive the **Permissions requested** notification. The permission you granted earlier was cached.
+1. Start the application a second time and notice you no longer receive the **Permissions requested** notification. The permission you granted earlier was cached. **Note:** If you have mutliple accounts, and With some account configurations, you might see the notification again.
 
 ## Clean up resources
 
