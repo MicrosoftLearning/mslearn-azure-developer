@@ -42,7 +42,7 @@ In this section of the exercise you create a resource group and Azure Cosmos DB 
     accountName=cosmosexercise$RANDOM
     ```
 
-1. Run the following commands to create the Azure Cosmos DB account, each account name must be unique. 
+1. Run the following commands to create the Azure Cosmos DB account, each account name must be unique.
 
     ```
     az cosmosdb create --name $accountName \
@@ -120,46 +120,54 @@ Now it's time to replace the template code in the **Program.cs** file using the 
     code Program.cs
     ```
 
-1. Replace any existing code with the following code snippet. 
+1. Replace any existing code with the following code snippet.
 
-    The code provides the overall structure of the app. Review the comments in the code to get an understanding of how it works. To complete the application, you add code in specified areas later in the exercise. 
+    The code provides the overall structure of the app. Review the comments in the code to get an understanding of how it works. To complete the application, you add code in specified areas later in the exercise.
 
     ```csharp
     using Microsoft.Azure.Cosmos;
     using dotenv.net;
-    
+
     string databaseName = "myDatabase"; // Name of the database to create or use
     string containerName = "myContainer"; // Name of the container to create or use
-    
-    // Load environment variables from .env file
-    DotEnv.Load();
-    var envVars = DotEnv.Read();
-    string cosmosDbAccountUrl = envVars["DOCUMENT_ENDPOINT"];
-    string accountKey = envVars["ACCOUNT_KEY"];
-    
-    if (string.IsNullOrEmpty(cosmosDbAccountUrl) || string.IsNullOrEmpty(accountKey))
+
+    try
     {
-        Console.WriteLine("Please set the DOCUMENT_ENDPOINT and ACCOUNT_KEY environment variables.");
+        // Load environment variables from .env file
+        DotEnv.Load();
+        var envVars = DotEnv.Read();
+        cosmosDbAccountUrl = envVars["DOCUMENT_ENDPOINT"];
+        accountKey = envVars["ACCOUNT_KEY"];
+
+        if (string.IsNullOrEmpty(cosmosDbAccountUrl) || string.IsNullOrEmpty(accountKey))
+        {
+            Console.WriteLine("Please set the DOCUMENT_ENDPOINT and ACCOUNT_KEY environment variables.");
+            return;
+        }
+    }
+    catch (KeyNotFoundException ex)
+    {
+        Console.WriteLine($"Error: {ex.Message}");
         return;
     }
-    
+
     // CREATE THE COSMOS DB CLIENT USING THE ACCOUNT URL AND KEY
-    
-    
+
+
     try
     {
         // CREATE A DATABASE IF IT DOESN'T ALREADY EXIST
-    
-    
+
+
         // CREATE A CONTAINER WITH A SPECIFIED PARTITION KEY
-    
-    
+
+
         // DEFINE A TYPED ITEM (PRODUCT) TO ADD TO THE CONTAINER
-    
-    
+
+
         // ADD THE ITEM TO THE CONTAINER
-    
-    
+
+
     }
     catch (CosmosException ex)
     {
@@ -173,7 +181,7 @@ Now it's time to replace the template code in the **Program.cs** file using the 
         // Log the error message for debugging
         Console.WriteLine($"Error: {ex.Message}");
     }
-    
+
     // This class represents a product in the Cosmos DB container
     public class Product
     {
@@ -185,7 +193,7 @@ Now it's time to replace the template code in the **Program.cs** file using the 
 
 Next, you add code in specified areas of the projects to create the: client, database, container, and add a sample item to the container.
 
-### Add code to create the client and perform operations 
+### Add code to create the client and perform operations
 
 1. Add the following code in the space after the **// CREATE THE COSMOS DB CLIENT USING THE ACCOUNT URL AND KEY** comment. This code defines the client used to connect to your Azure Cosmos DB account.
 
@@ -196,16 +204,16 @@ Next, you add code in specified areas of the projects to create the: client, dat
     );
     ```
 
-    >Note: It's a best practice to use the **DefaultAzureCredential** from the *Azure Identity* library. This can require some additional configuration requirements in Azure depending on how your subscription is set up. 
+    >Note: It's a best practice to use the **DefaultAzureCredential** from the *Azure Identity* library. This can require some additional configuration requirements in Azure depending on how your subscription is set up.
 
-1. Add the following code in the space after the **// CREATE A DATABASE IF IT DOESN'T ALREADY EXIST** comment. 
+1. Add the following code in the space after the **// CREATE A DATABASE IF IT DOESN'T ALREADY EXIST** comment.
 
     ```csharp
     Database database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
     Console.WriteLine($"Created or retrieved database: {database.Id}");
     ```
 
-1. Add the following code in the space after the **// CREATE A CONTAINER WITH A SPECIFIED PARTITION KEY** comment. 
+1. Add the following code in the space after the **// CREATE A CONTAINER WITH A SPECIFIED PARTITION KEY** comment.
 
     ```csharp
     Container container = await database.CreateContainerIfNotExistsAsync(
@@ -226,7 +234,7 @@ Next, you add code in specified areas of the projects to create the: client, dat
     };
     ```
 
-1. Add the following code in the space after the **// ADD THE ITEM TO THE CONTAINER** comment. 
+1. Add the following code in the space after the **// ADD THE ITEM TO THE CONTAINER** comment.
 
     ```csharp
     ItemResponse<Product> createResponse = await container.CreateItemAsync(
