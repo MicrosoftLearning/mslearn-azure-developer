@@ -55,6 +55,8 @@ In this section you download the sample app and set variables to make the comman
 
     Now that your deployment has finished it's time to view the web app.
 
+    >**Note:** You might need to run **az login**, or **az login --use-device-code** in the cloud shell for the **az webapp up** command to work.
+
 1. In the Azure portal navigate to the web app you deployed. You can enter the name you noted earlier in the **Search resources, services, and docs (G + /)** search bar, and select the resource from the list.
 
 1. Select the link to your web app located in the **Default domain** field in the **Essentials** section. The link will open the site in a new tab.
@@ -63,7 +65,7 @@ In this section you download the sample app and set variables to make the comman
 
 In this section you create a deployment slot, modify the HTML in the app, and deploy the updated code to the new deployment slot.
 
-### Create a deployment slot 
+### Create a deployment slot
 
 1. Return to the tab with the Azure portal and cloud shell.
 
