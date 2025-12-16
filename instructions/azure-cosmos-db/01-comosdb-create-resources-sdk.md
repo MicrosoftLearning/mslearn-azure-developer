@@ -124,72 +124,64 @@ Now it's time to replace the template code in the **Program.cs** file using the 
 
     The code provides the overall structure of the app. Review the comments in the code to get an understanding of how it works. To complete the application, you add code in specified areas later in the exercise.
 
-    ```csharp
-    using Microsoft.Azure.Cosmos;
-    using dotenv.net;
+```csharp
+using Microsoft.Azure.Cosmos;
+using dotenv.net;
 
-    string databaseName = "myDatabase"; // Name of the database to create or use
-    string containerName = "myContainer"; // Name of the container to create or use
+string databaseName = "myDatabase"; // Name of the database to create or use
+string containerName = "myContainer"; // Name of the container to create or use
 
-    try
-    {
-        // Load environment variables from .env file
-        DotEnv.Load();
-        var envVars = DotEnv.Read();
-        cosmosDbAccountUrl = envVars["DOCUMENT_ENDPOINT"];
-        accountKey = envVars["ACCOUNT_KEY"];
+// Load environment variables from .env file
+DotEnv.Load();
+var envVars = DotEnv.Read();
+string cosmosDbAccountUrl = envVars["DOCUMENT_ENDPOINT"];
+string accountKey = envVars["ACCOUNT_KEY"];
 
-        if (string.IsNullOrEmpty(cosmosDbAccountUrl) || string.IsNullOrEmpty(accountKey))
-        {
-            Console.WriteLine("Please set the DOCUMENT_ENDPOINT and ACCOUNT_KEY environment variables.");
-            return;
-        }
-    }
-    catch (KeyNotFoundException ex)
-    {
-        Console.WriteLine($"Error: {ex.Message}");
-        return;
-    }
+if (string.IsNullOrEmpty(cosmosDbAccountUrl) || string.IsNullOrEmpty(accountKey))
+{
+    Console.WriteLine("Please set the DOCUMENT_ENDPOINT and ACCOUNT_KEY environment variables.");
+    return;
+}
 
-    // CREATE THE COSMOS DB CLIENT USING THE ACCOUNT URL AND KEY
+// CREATE THE COSMOS DB CLIENT USING THE ACCOUNT URL AND KEY
 
 
-    try
-    {
-        // CREATE A DATABASE IF IT DOESN'T ALREADY EXIST
+try
+{
+    // CREATE A DATABASE IF IT DOESN'T ALREADY EXIST
 
 
-        // CREATE A CONTAINER WITH A SPECIFIED PARTITION KEY
+    // CREATE A CONTAINER WITH A SPECIFIED PARTITION KEY
 
 
-        // DEFINE A TYPED ITEM (PRODUCT) TO ADD TO THE CONTAINER
+    // DEFINE A TYPED ITEM (PRODUCT) TO ADD TO THE CONTAINER
 
 
-        // ADD THE ITEM TO THE CONTAINER
+    // ADD THE ITEM TO THE CONTAINER
 
 
-    }
-    catch (CosmosException ex)
-    {
-        // Handle Cosmos DB-specific exceptions
-        // Log the status code and error message for debugging
-        Console.WriteLine($"Cosmos DB Error: {ex.StatusCode} - {ex.Message}");
-    }
-    catch (Exception ex)
-    {
-        // Handle general exceptions
-        // Log the error message for debugging
-        Console.WriteLine($"Error: {ex.Message}");
-    }
+}
+catch (CosmosException ex)
+{
+    // Handle Cosmos DB-specific exceptions
+    // Log the status code and error message for debugging
+    Console.WriteLine($"Cosmos DB Error: {ex.StatusCode} - {ex.Message}");
+}
+catch (Exception ex)
+{
+    // Handle general exceptions
+    // Log the error message for debugging
+    Console.WriteLine($"Error: {ex.Message}");
+}
 
-    // This class represents a product in the Cosmos DB container
-    public class Product
-    {
-        public string? id { get; set; }
-        public string? name { get; set; }
-        public string? description { get; set; }
-    }
-    ```
+// This class represents a product in the Cosmos DB container
+public class Product
+{
+    public string? id { get; set; }
+    public string? name { get; set; }
+    public string? description { get; set; }
+}
+```
 
 Next, you add code in specified areas of the projects to create the: client, database, container, and add a sample item to the container.
 
