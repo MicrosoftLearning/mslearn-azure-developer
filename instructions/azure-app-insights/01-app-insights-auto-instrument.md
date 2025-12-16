@@ -22,7 +22,7 @@ This exercise takes approximately **20** minutes to complete.
 ## Create resources in Azure
 
 1. In your browser navigate to the Azure portal [https://portal.azure.com](https://portal.azure.com); signing in with your Azure credentials if prompted.
-1. Select the **+ Create a resource** located in the **Azure Services** heading near the top of the homepage. 
+1. Select the **+ Create a resource** located in the **Azure Services** heading near the top of the homepage.
 1. In the **Search the Marketplace** search bar, enter *web app* and press **enter** to start searching.
 1. In the Web App tile, select the **Create** drop-down and then select **Web App**.
 
@@ -124,6 +124,8 @@ To deploy the app you first need to publish it with the **dotnet publish** comma
         --src-path ./app.zip
     ```
 
+    >**Note:** You might need to run **az login**, or **az login --use-device-code** in the cloud shell for the **az webapp up** command to work.
+
 1. When the deployment is completed, select the link in the **Default domain** field located in the **Essentials** section to open the app in a new tab in your browser.
 
 Now it's time to view some basic application metrics in Application Insights. Don't close this tab, you'll use it in the rest of the exercise.
@@ -147,11 +149,11 @@ Perform the following steps in the web app.
 
 1. To create some errors, select the **Home** button and then append the URL with **/failures**. This route doesn't exist in the web app and will generate an error. Refresh the page several times to generate error data.
 
-1. Return to the tab where Application Insights is running, and wait a minute or two for the information to appear in the charts. 
+1. Return to the tab where Application Insights is running, and wait a minute or two for the information to appear in the charts.
 
 1. In the left-navigation expand the **Investigate** section and select **Failures**. It displays the failed request count along with more detailed information about the response codes for the failures.
 
-Explore other reporting options to get an idea of what other types of information is available. 
+Explore other reporting options to get an idea of what other types of information is available.
 
 ## Clean up resources
 
