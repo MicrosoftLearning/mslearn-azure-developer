@@ -43,7 +43,7 @@ In this section of the exercise you create a resource group and Azure Storage ac
     myResourceGroup=<myResourceGroup>
     ```
 
-1. Create an APIM instance. The **az apim create** command is used to create the instance. 
+1. Create an APIM instance. The **az apim create** command is used to create the instance.
 
     ```bash
     az apim create -n $myApiName \
@@ -51,9 +51,9 @@ In this section of the exercise you create a resource group and Azure Storage ac
         --publisher-email $myEmail  \
         --resource-group $myResourceGroup \
         --publisher-name Import-API-Exercise \
-        --sku-name Consumption 
+        --sku-name Consumption
     ```
-    > **Note:** The operation should complete in about five minutes. 
+    > **Note:** The operation should complete in about five minutes.
 
 ## Import a backend API
 
@@ -70,13 +70,11 @@ This section shows how to import and publish an OpenAPI specification backend AP
 
 1. Select **OpenAPI** in the **Create from definition** section, and set the **Basic/Full** toggle to **Full** in the pop-up that appears.
 
-    ![Screenshot of the OpenAPI dialog box. Fields are detailed in the following table.](./media/create-api.png)
-
     Use the values from the following table to fill out the form. You can leave any fields not mentioned to their default value.
 
     | Setting | Value | Description |
     |--|--|--|
-    | **OpenAPI Specification** | `https://petstore3.swagger.io/api/v3/openapi.json` | References the service implementing the API, requests are forwarded to this address. Most of the necessary information in the form is automatically populated after you enter this value. |
+    | **OpenAPI Specification** | `https://petstore.swagger.io/v2/swagger.json` | References the service implementing the API, requests are forwarded to this address. Most of the necessary information in the form is automatically populated after you enter this value. |
     | **URL scheme** | Ensure **HTTPS** is selected. | Defines the security level of the HTTP protocol accepted by the API. |
 
 1. Select **Create**.
@@ -87,13 +85,14 @@ Now that the API has been imported and configured it's time to test the API.
 
 1. Select **Test** in the menu bar. This will display all of the operations available in the API.
 
-1. Search for, and select the **Find Pets by status.** operation. 
+1. Search for, and select the **Find Pets by status.** operation.
+1. In the **Template parameters** section, enter `available` as the value in the **status** field.
 
 1. Select **Send**. You may need to scroll down on the page to view the HTTP response.
 
     Backend responds with **200 OK** and some data.
 
-1. If you want to try different results you can select a different **status** in the **Template parameters** section. Select the dropdown under **VALUE** and choose a different status. Then, select **Send** to see the new results.
+1. If you want to try different results you can enter a different **status** in the **Template parameters** section. Enter `pending` or `sold` as the value, and then select **Send** to see the new results.
 
 ## Clean up resources
 
