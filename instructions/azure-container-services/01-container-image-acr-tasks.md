@@ -18,6 +18,8 @@ Tasks performed in this exercise:
 
 This exercise takes approximately **20** minutes to complete.
 
+>**Important:** Azure Container Registry task runs are temporarily paused from Azure free credits. This exercise requires a Pay-As-You-Go, or another paid plan.
+
 ## Create an Azure Container Registry resource
 
 1. In your browser navigate to the Azure portal [https://portal.azure.com](https://portal.azure.com); signing in with your Azure credentials if prompted.
@@ -73,8 +75,8 @@ Next, you build and push an image based on a Dockerfile.
         tag: latest
         digest: sha256:92c7f9c92844bbbb5d0a101b22f7c2a7949e40f8ea90c8b3bc396879d95e899a
       git: {}
-    
-    
+
+
     Run ID: cf1 was successful after 11s
     ```
 
@@ -118,7 +120,7 @@ Next, you build and push an image based on a Dockerfile.
         --cmd '$Registry/sample/hello-world:v1' /dev/null
     ```
 
-    The **cmd** parameter in this example runs the container in its default configuration, but **cmd** supports other **docker run** parameters or even other **docker** commands. 
+    The **cmd** parameter in this example runs the container in its default configuration, but **cmd** supports other **docker run** parameters or even other **docker** commands.
 
     The following sample output is shortened:
 
@@ -137,13 +139,13 @@ Next, you build and push an image based on a Dockerfile.
     2019/03/19 19:01:55 Successfully logged into mycontainerregistry008.azurecr.io
     2019/03/19 19:01:55 Executing step ID: acb_step_0. Working directory: '', Network: 'acb_default_network'
     2019/03/19 19:01:55 Launching container with name: acb_step_0
-    
+
     Hello from Docker!
     This message shows that your installation appears to be working correctly.
-    
+
     2019/03/19 19:01:56 Successfully executed container: acb_step_0
     2019/03/19 19:01:56 Step ID: acb_step_0 marked as successful (elapsed time in seconds: 0.843801)
-    
+
     Run ID: cab was successful after 6s
     ```
 
