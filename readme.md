@@ -1,3 +1,5 @@
+**This course will be retired on 2026-5-29. Once course is retired, all GitHub repos will be removed. Thank you!**
+
 # Microsoft Lab Exercises
 <!-- Change the title above as appropriate -->
 [GitHub pages for the exercises](https://microsoftlearning.github.io/mslearn-azure-developer/)
