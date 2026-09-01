@@ -1,4 +1,6 @@
 # Microsoft Lab Exercises
+
+**This repository has been archived. The course and self-paced content it supported have been retired.**
 <!-- Change the title above as appropriate -->
 [GitHub pages for the exercises](https://microsoftlearning.github.io/mslearn-azure-developer/)
 
